@@ -21,7 +21,7 @@ export const Input = (props: InputProps) => {
       required={required}
       className={twMerge(clsx(defaultClassName, props.className))}
       placeholder={placeholder}
-      onChange={props.onChange}
+      onInput={props.onChange}
     />
   )
 }

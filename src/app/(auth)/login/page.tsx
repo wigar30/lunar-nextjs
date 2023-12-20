@@ -3,9 +3,12 @@
 import clsx from "clsx"
 import Link from "next/link"
 import { useEffect, useState } from "react"
+import { signIn, useSession } from "next-auth/react"
+import { useRouter } from 'next/navigation'
 
 import { Text } from "@/components/Base/Text"
 import { Input } from "@/components/Base/Input"
+import { Button } from "@/components/Base/Button"
 
 import { LoginForms } from "@/types/app/login"
 
@@ -18,6 +21,9 @@ export default function Page() {
     password: ''
   })
 
+  const { data: session } = useSession()
+  const router = useRouter()
+
   useEffect(() => {
     setAnimate(true)
   }, [])
@@ -26,10 +32,15 @@ export default function Page() {
     setShowPassword(!showPassword)
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-
-    console.log(forms)
+    await signIn('credentials', { redirect: false, email: forms.email, password: forms.password }).then((response) => {
+      console.log(response);
+      router.push('/')
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   }
   return (
     <main className="w-full h-screen bg-primary-100 dark:bg-primary-800">
@@ -92,10 +103,14 @@ export default function Page() {
                 <Text className="text-sm">Lupa Password</Text>
               </Link>
             </div>
-            <button type="submit">
-              submit
-            </button>
+            <Button type="submit" size="lg" block className="mt-4">
+              Login
+            </Button>
           </form>
+
+          <div className="w-full flex justify-center mt-6">
+            <Text className="text-xs">Belum Punya Akun? <Link href="/register">Daftar Sekarang</Link></Text>
+          </div>
         </div>
         <div className={clsx([animate ? 'w-2/3' : 'w-full'], 'h-full transition-all delay-100 duration-500 bg-primary-200 dark:bg-primary-800 flex-none absolute right-0')} />
       </section>
