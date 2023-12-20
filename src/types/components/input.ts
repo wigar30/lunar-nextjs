@@ -1,4 +1,4 @@
-import { HTMLInputTypeAttribute, MouseEventHandler } from "react"
+import { HTMLInputTypeAttribute, MouseEventHandler } from 'react'
 
 export type InputProps = {
   className?: string

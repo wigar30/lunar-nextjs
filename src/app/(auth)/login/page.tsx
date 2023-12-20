@@ -1,16 +1,16 @@
 'use client'
 
-import clsx from "clsx"
-import Link from "next/link"
-import { useEffect, useState } from "react"
-import { signIn, useSession } from "next-auth/react"
+import clsx from 'clsx'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import { signIn, useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
-import { Text } from "@/components/Base/Text"
-import { Input } from "@/components/Base/Input"
-import { Button } from "@/components/Base/Button"
+import { Text } from '@/components/Base/Text'
+import { Input } from '@/components/Base/Input'
+import { Button } from '@/components/Base/Button'
 
-import { LoginForms } from "@/types/app/login"
+import { LoginForms } from '@/types/app/login'
 
 export default function Page() {
   const [animate, setAnimate] = useState(false)
@@ -35,13 +35,14 @@ export default function Page() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    await signIn('credentials', { redirect: false, email: forms.email, password: forms.password }).then((response) => {
-      console.log(response);
-      router.push('/')
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+    await signIn('credentials', { redirect: false, email: forms.email, password: forms.password })
+      .then((response) => {
+        console.log(response)
+        router.push('/')
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }
 
   const handleClickToRegister = () => {
@@ -56,35 +57,31 @@ export default function Page() {
     <main className="w-full h-screen bg-primary-100 dark:bg-primary-800">
       <section className="w-full h-full flex relative">
         <div className={clsx('w-1/3 h-full bg-primary-950 dark:bg-primary-50 transition-all flex flex-col items-center px-4 py-8')}>
-          <Text className="text-6xl pointer-events-none select-none" weight="medium">Lunar</Text>
-          <Text className="text-sm pointer-events-none select-none" weight="normal">Belanja hemat sepuasnya hanya di Lunar Marketplace.</Text>
+          <Text className="text-6xl pointer-events-none select-none" weight="medium">
+            Lunar
+          </Text>
+          <Text className="text-sm pointer-events-none select-none" weight="normal">
+            Belanja hemat sepuasnya hanya di Lunar Marketplace.
+          </Text>
 
           <form className="mt-6 w-full px-6" method="post" onSubmit={handleSubmit}>
             <label htmlFor="email" className="mt-2">
-              <Text weight="semibold" className="mt-2">Email</Text>
-              <Input
-                name="email"
-                type="email"
-                required
-                placeholder="Email"
-                onChange={e => setForms({...forms, email: e.target.value})}
-              />
+              <Text weight="semibold" className="mt-2">
+                Email
+              </Text>
+              <Input name="email" type="email" required placeholder="Email" onChange={(e) => setForms({ ...forms, email: e.target.value })} />
             </label>
 
             <label htmlFor="password" className="mt-6">
-              <Text weight="semibold" className="mt-2">Password</Text>
+              <Text weight="semibold" className="mt-2">
+                Password
+              </Text>
               <div className="relative">
-                <Input
-                  name="password"
-                  type={showPassword ? 'text' : 'password'}
-                  required
-                  placeholder="Password"
-                  onChange={e => setForms({...forms, password: e.target.value})}
-                />
+                <Input name="password" type={showPassword ? 'text' : 'password'} required placeholder="Password" onChange={(e) => setForms({ ...forms, password: e.target.value })} />
 
                 <div className="absolute inset-y-[35%] right-0 pr-3 text-sm">
                   <svg
-                    className={clsx({ hidden: !showPassword, block: showPassword },'h-4 text-gray-500 cursor-pointer')}
+                    className={clsx({ hidden: !showPassword, block: showPassword }, 'h-4 text-gray-500 cursor-pointer')}
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 576 512"
                     onClick={handleSeePassword}
@@ -95,7 +92,7 @@ export default function Page() {
                     />
                   </svg>
                   <svg
-                    className={clsx({ block: !showPassword, hidden: showPassword },'h-4 text-gray-500 cursor-pointer')}
+                    className={clsx({ block: !showPassword, hidden: showPassword }, 'h-4 text-gray-500 cursor-pointer')}
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 640 512"
                     onClick={handleSeePassword}
@@ -120,10 +117,19 @@ export default function Page() {
 
           <div className="w-full flex justify-center mt-6">
             <Text className="text-xs">Belum Punya Akun?</Text>
-            <Text className="text-xs cursor-pointer" onClick={handleClickToRegister}>Daftar Sekarang</Text>
+            <Text className="text-xs cursor-pointer" onClick={handleClickToRegister}>
+              Daftar Sekarang
+            </Text>
           </div>
         </div>
-        <div className={clsx([animate ? 'w-2/3' : 'w-full'], [animateDestroy ? 'w-full' : 'w-1/3'], 'h-full transition-all delay-100 duration-500 bg-primary-200 dark:bg-primary-800 flex-none absolute right-0')} onTransitionEnd={handleAnimationEnd}/>
+        <div
+          className={clsx(
+            [animate ? 'w-2/3' : 'w-full'],
+            [animateDestroy ? 'w-full' : 'w-1/3'],
+            'h-full transition-all delay-100 duration-500 bg-primary-200 dark:bg-primary-800 flex-none absolute right-0'
+          )}
+          onTransitionEnd={handleAnimationEnd}
+        />
       </section>
     </main>
   )

@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from 'next/link'
 
 export const Navbar = () => (
   <nav className="container mx-auto flex justify-between items-center h-14">

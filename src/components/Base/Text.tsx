@@ -1,11 +1,8 @@
-import { TextProps, Weight } from "@/types/components/text"
-import clsx from "clsx"
+import { TextProps, Weight } from '@/types/components/text'
+import clsx from 'clsx'
 
 export const Text = (props: TextProps) => {
-  const {
-    weight = 'normal',
-    className = ''
-  } = props
+  const { weight = 'normal', className = '' } = props
 
   const weightClass: Weight = {
     thin: 'font-thin',
@@ -16,13 +13,10 @@ export const Text = (props: TextProps) => {
     semibold: 'font-semibold',
     bold: 'font-bold',
     extrabold: 'font-extrabold',
-    black: 'font-black',
+    black: 'font-black'
   }
   return (
-    <p
-      className={clsx(`text-primary-200 dark:text-primary-800 ${weightClass[weight]} ${className}`)}
-      onClick={props.onClick}
-    >
+    <p className={clsx(`text-primary-200 dark:text-primary-800 ${weightClass[weight]} ${className}`)} onClick={props.onClick}>
       {props.children}
     </p>
   )
