@@ -1,4 +1,4 @@
-import { HTMLInputTypeAttribute } from "react"
+import { HTMLInputTypeAttribute, MouseEventHandler } from "react"
 
 export type InputProps = {
   className?: string
@@ -7,5 +7,5 @@ export type InputProps = {
   value?: string | number
   required?: boolean
   type?: HTMLInputTypeAttribute
-  onChange:(e: React.ChangeEvent<HTMLInputElement>) => void
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }

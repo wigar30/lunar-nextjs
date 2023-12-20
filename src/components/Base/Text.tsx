@@ -19,6 +19,11 @@ export const Text = (props: TextProps) => {
     black: 'font-black',
   }
   return (
-    <p className={clsx(`text-primary-200 dark:text-primary-800 ${weightClass[weight]} ${className}`)}>{props.children}</p>
+    <p
+      className={clsx(`text-primary-200 dark:text-primary-800 ${weightClass[weight]} ${className}`)}
+      onClick={props.onClick}
+    >
+      {props.children}
+    </p>
   )
 }

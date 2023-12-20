@@ -14,6 +14,7 @@ import { LoginForms } from "@/types/app/login"
 
 export default function Page() {
   const [animate, setAnimate] = useState(false)
+  const [animateDestroy, setAnimateDestroy] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
 
   const [forms, setForms] = useState<LoginForms>({
@@ -41,6 +42,15 @@ export default function Page() {
     .catch((error) => {
       console.log(error);
     });
+  }
+
+  const handleClickToRegister = () => {
+    setAnimateDestroy(true)
+  }
+  const handleAnimationEnd = () => {
+    if (!animateDestroy) return
+
+    router.push('/register')
   }
   return (
     <main className="w-full h-screen bg-primary-100 dark:bg-primary-800">
@@ -109,10 +119,11 @@ export default function Page() {
           </form>
 
           <div className="w-full flex justify-center mt-6">
-            <Text className="text-xs">Belum Punya Akun? <Link href="/register">Daftar Sekarang</Link></Text>
+            <Text className="text-xs">Belum Punya Akun?</Text>
+            <Text className="text-xs cursor-pointer" onClick={handleClickToRegister}>Daftar Sekarang</Text>
           </div>
         </div>
-        <div className={clsx([animate ? 'w-2/3' : 'w-full'], 'h-full transition-all delay-100 duration-500 bg-primary-200 dark:bg-primary-800 flex-none absolute right-0')} />
+        <div className={clsx([animate ? 'w-2/3' : 'w-full'], [animateDestroy ? 'w-full' : 'w-1/3'], 'h-full transition-all delay-100 duration-500 bg-primary-200 dark:bg-primary-800 flex-none absolute right-0')} onTransitionEnd={handleAnimationEnd}/>
       </section>
     </main>
   )

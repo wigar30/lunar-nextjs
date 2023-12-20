@@ -2,6 +2,7 @@ export type TextProps = {
   className?: string
   weight?: keyof Weight
   children: React.ReactNode
+  onClick?: (e: React.SyntheticEvent) => void
 }
 
 export type Weight = {
