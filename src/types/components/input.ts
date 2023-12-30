@@ -7,5 +7,5 @@ export type InputProps = {
   value?: string | number
   required?: boolean
   type?: HTMLInputTypeAttribute
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onInput: (e: React.ChangeEvent<HTMLInputElement>) => void
 }

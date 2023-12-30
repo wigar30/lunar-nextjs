@@ -1,3 +1,4 @@
+import { ofetch } from 'ofetch'
 import NextAuth from 'next-auth/next'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
@@ -11,39 +12,45 @@ const handler = NextAuth({
       },
       async authorize(credentials, req) {
         try {
-          const res = await fetch('http://localhost:8080/api/v1/auth/login', {
+          const res = await ofetch('/v1/auth/login', {
+            baseURL: process.env.NEXT_PUBLIC_API,
             method: 'POST',
             body: JSON.stringify(credentials),
             headers: { 'Content-Type': 'application/json' }
           })
 
-          const user = await res.json()
-
-          if (!res.ok) {
-            throw new Error(user.message)
-          }
-
-          if (res.ok && user) {
-            return user.data
+          if (res) {
+            return res.data
           }
 
           return null
         } catch (error: any) {
-          throw new Error(error)
+          throw new Error(error.data.error.message || error || 'something went wrong :(')
         }
       }
     })
   ],
   pages: {
     signIn: '/login',
-    error: ''
+    error: '',
+    // signOut: '/login'
   },
   callbacks: {
+    async redirect({ url, baseUrl }) {
+      console.log(baseUrl, url)
+      if (url === '/login') {
+        return `${baseUrl}/login`
+      }
+      return `${baseUrl}`
+    },
     async jwt({ token, user, account }: any) {
       return { ...token, ...user }
     },
-    async session({ session, token }: any) {
-      session.user = token
+    async session({ session, token, user }: any) {
+      session = {
+        token,
+        user
+      }
 
       return session
     }

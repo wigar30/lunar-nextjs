@@ -1,6 +1,11 @@
 import Link from 'next/link'
+import { signOut } from 'next-auth/react'
 
-export const Navbar = () => (
+export const Navbar = () => {
+  const handleSignOut = () => {
+    signOut({ redirect: false })
+  }
+  return (
   <nav>
     <div className="flex space-x-4">
       <Link href="/">
@@ -14,6 +19,9 @@ export const Navbar = () => (
       <Link href="/register">
         <span>Register</span>
       </Link>
+
+      <span onClick={handleSignOut}>Logout</span>
     </div>
   </nav>
-)
+  )
+}

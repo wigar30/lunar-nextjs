@@ -1,10 +1,8 @@
 'use client'
 import { Raleway } from 'next/font/google'
-
-import { Navbar } from './components/Navbar'
+import { SessionProvider } from 'next-auth/react'
 
 import '../globals.css'
-import { SessionProvider } from 'next-auth/react'
 
 const raleway = Raleway({ subsets: ['latin'] })
 
