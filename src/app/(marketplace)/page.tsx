@@ -1,5 +1,4 @@
 'use client'
-import Image from 'next/image'
 
 import { SecurePageWrapper } from '@/components/PageWrapper/SecurePageWrapper'
 import { useUserStore } from '@/store/useUserStore'

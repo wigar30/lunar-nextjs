@@ -1,13 +1,16 @@
 'use client'
 
-import { useUserStore } from '@/store/useUserStore'
-import { motion } from 'framer-motion'
-import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { useAuth } from '@/hooks/useAuth'
-import { Response as ResponseType } from '@/types/app/ofetch/response'
-import { User } from '@/types/store/user'
+import { motion } from 'framer-motion'
+import { usePathname } from 'next/navigation'
 import { hasCookie } from 'cookies-next'
+
+import { useAuth } from '@/hooks/useAuth'
+
+import { useUserStore } from '@/store/useUserStore'
+
+import { User } from '@/types/store/user'
+import { Response as ResponseType } from '@/types/app/ofetch/response'
 
 const getUser = async (): Promise<ResponseType<User>> => {
   const user = await fetch('/api/auth/user')

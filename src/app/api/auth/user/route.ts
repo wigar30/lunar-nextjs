@@ -1,7 +1,9 @@
+import { cookies } from 'next/headers'
+
 import { useFetch } from '@/hooks/api/useFetch'
+
 import { Response as ResponseType } from '@/types/app/ofetch/response'
 import { User } from '@/types/store/user'
-import { cookies } from 'next/headers'
 
 export const dynamic = 'force-dynamic'
 
