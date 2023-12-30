@@ -3,7 +3,6 @@
 import clsx from 'clsx'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
 import { Text } from '@/components/Base/Text'
@@ -11,15 +10,26 @@ import { Input } from '@/components/Base/Input'
 import { Button } from '@/components/Base/Button'
 import { GuestPageWrapper } from '@/components/PageWrapper/GuestPageWrapper'
 
-import { LoginForms } from '@/types/app/login'
+import { LoginForms, LoginResponse } from '@/types/app/login'
+import { Response as ResponseType } from '@/types/app/ofetch/response'
 
-import { useApiMe } from '@/hooks/api/auth/useApiMe'
+const getData = async (forms: LoginForms): Promise<ResponseType<LoginResponse> | undefined> => {
+  const login = await fetch('/api/auth/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(forms)
+  })
+
+  if (login.ok) return login.json()
+  else return
+}
 
 export default function Page() {
   const [animate, setAnimate] = useState(false)
   const [animateDestroy, setAnimateDestroy] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
-  const [shouldFetch, setShouldFetch] = useState(false)
 
   const [forms, setForms] = useState<LoginForms>({
     email: '',
@@ -27,7 +37,6 @@ export default function Page() {
   })
 
   const router = useRouter()
-  const { profile, isLoading } = useApiMe(shouldFetch)
 
   useEffect(() => {
     setAnimate(true)
@@ -39,14 +48,12 @@ export default function Page() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    await signIn('credentials', { redirect: false, email: forms.email, password: forms.password })
-      .then(() => {
-        setShouldFetch(true)
-        router.push('/')
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+
+    try {
+      const login = await getData(forms)
+
+      router.push('/')
+    } catch (error) {}
   }
 
   const handleClickToRegister = () => {

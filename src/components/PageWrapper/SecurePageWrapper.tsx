@@ -1,42 +1,56 @@
 'use client'
 
-import { signOut, useSession } from 'next-auth/react'
-import { useApiMe } from '@/hooks/api/auth/useApiMe'
 import { useUserStore } from '@/store/useUserStore'
 import { motion } from 'framer-motion'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { useAuth } from '@/hooks/useAuth'
+import { Response as ResponseType } from '@/types/app/ofetch/response'
+import { User } from '@/types/store/user'
+import { hasCookie } from 'cookies-next'
+
+const getUser = async (): Promise<ResponseType<User>> => {
+  const user = await fetch('/api/auth/user')
+  if (user.ok) {
+    const resp = user.json()
+    return Promise.resolve(resp)
+  } else return Promise.reject('error')
+}
 
 export const SecurePageWrapper = ({ children }: { children: React.ReactNode }) => {
-  const [shouldFetch, setShouldFetch] = useState(false)
+  const { signOut } = useAuth()
+  const [isToken, setIsToken] = useState(false)
 
-  const { profile, isLoading, isError } = useApiMe(shouldFetch)
-  const pathname = usePathname()
   const store = useUserStore((state) => state)
-  const { data: session, status } = useSession()
-  
-  useEffect(() => {
-    if (status === "unauthenticated") {
-      signOut()
-    }
-    if (!store.user && status === "authenticated" && !shouldFetch) {
-      setShouldFetch(true)
-    }
-  }, [store.user, status, shouldFetch])
+  const pathname = usePathname()
 
   useEffect(() => {
-    console.log(234234)
-    if (isError) {
+    const token = hasCookie('next.auth.access_token')
+    setIsToken(true)
+    if (!token) {
       signOut()
     }
-    if (!isLoading && profile) {
-      store.updateUser(profile);
+  }, [])
+
+  useEffect(() => {
+    if (!store.user) {
+      getUser()
+        .then((res) => {
+          store.updateUser(res.data)
+        })
+        .catch((res) => {
+          signOut()
+        })
     }
-  }, [isLoading, profile, isError]);
+  }, [store.user])
 
   return (
-    <motion.div key={pathname} className="w-full h-full min-h-screen" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }}>
-      {children}
-    </motion.div>
+    <>
+      {isToken && (
+        <motion.div key={pathname} className="w-full h-full min-h-screen" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }}>
+          {children}
+        </motion.div>
+      )}
+    </>
   )
 }

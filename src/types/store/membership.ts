@@ -1,5 +1,5 @@
-import type { Role } from "./role"
-import type { Tenant } from "./tenant"
+import type { Role } from './role'
+import type { Tenant } from './tenant'
 
 export type Membership = {
   id: string

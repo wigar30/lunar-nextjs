@@ -1,20 +1,18 @@
-import { useSession } from 'next-auth/react'
 import { ofetch } from 'ofetch'
 
 type FetchOptions = {
   method: 'POST' | 'GET' | 'PUT' | 'PATCH' | 'DELETE'
+  accessToken?: string | undefined
 }
 
 export const useFetch = () => {
-  const { data: session } = useSession()
-
-  const apiFetch = (url: string, options: FetchOptions, payload: Record<string, any> | null = null) => {
-    return ofetch(url, {
+  const apiFetch = <T>(url: string, options: FetchOptions, payload: Record<string, any> | null = null) => {
+    return ofetch<T>(url, {
       baseURL: process.env.NEXT_PUBLIC_API,
       method: options.method,
       headers: {
         'Content-Type': 'application/json',
-        ...(session?.token?.access_token && { Authorization: `Bearer ${session.token.access_token}` })
+        ...(options.accessToken && { Authorization: `Bearer ${options.accessToken}` })
       },
       body: payload ? JSON.stringify(payload) : null
     })

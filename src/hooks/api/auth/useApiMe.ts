@@ -9,11 +9,15 @@ import { User } from '@/types/store/user'
 export const useApiMe = (shouldFetch: boolean = false) => {
   const { apiFetch } = useFetch()
 
-  const { data: profile, error, isLoading } = useSWR<Response<User>>(shouldFetch ? '/v1/user/profile' : null, (url) => apiFetch(url, { method: 'GET' }), {
+  const {
+    data: profile,
+    error,
+    isLoading
+  } = useSWR<Response<User>>(shouldFetch ? '/v1/user/profile' : null, (url) => apiFetch(url, { method: 'GET' }), {
     shouldRetryOnError: false,
     revalidateOnFocus: false
   })
-  
+
   return {
     profile: profile?.data,
     isLoading,
