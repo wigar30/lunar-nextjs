@@ -1,16 +1,14 @@
 'use client'
 
-import { useEffect, useLayoutEffect, useState } from 'react'
-import { motion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
-import { getCookie, hasCookie } from 'cookies-next'
-
-import { useAuth } from '@/hooks/useAuth'
-
+import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
+import { getCookie, hasCookie, deleteCookie } from 'cookies-next'
 import { useUserStore } from '@/store/useUserStore'
 
 import { User } from '@/types/store/user'
 import { Response as ResponseType } from '@/types/app/ofetch/response'
+import { useFetch } from '@/hooks/api/useFetch'
 import { ofetch } from 'ofetch'
 
 const getUser = async (token: string): Promise<ResponseType<User>> => {
@@ -27,37 +25,38 @@ const getUser = async (token: string): Promise<ResponseType<User>> => {
   } else return Promise.reject('error')
 }
 
-export const SecurePageWrapper = ({ children }: { children: React.ReactNode }) => {
+export const PublicPageWrapper = ({ children }: { children: React.ReactNode }) => {
   const [isToken, setIsToken] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
 
-  const { signOut } = useAuth()
-
-  const store = useUserStore((state) => state)
   const pathname = usePathname()
 
-  useLayoutEffect(() => {
+  const store = useUserStore((state) => state)
+
+  useEffect(() => {
     const token = hasCookie('next.auth.access_token')
-    setIsToken(token)
+    if (token) setIsToken(true)
   }, [])
 
   useEffect(() => {
-    if (!store.user) {
+    if (!store.user && isToken) {
       const token = getCookie('next.auth.access_token')
       getUser(token as string)
         .then((res) => {
           store.updateUser(res.data)
           setIsLoaded(true)
         })
-        .catch((res) => {
-          signOut()
+        .catch(() => {
+          deleteCookie('next.auth.access_token')
         })
+    } else {
+      setIsLoaded(true)
     }
-  }, [store.user, isLoaded])
+  }, [store.user, isToken, isLoaded])
 
   return (
     <>
-      {isToken && isLoaded && (
+      {isLoaded && (
         <motion.main key={pathname} className="w-full h-full min-h-screen" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }}>
           {children}
         </motion.main>

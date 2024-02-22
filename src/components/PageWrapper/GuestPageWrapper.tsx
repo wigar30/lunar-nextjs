@@ -1,17 +1,18 @@
 'use client'
 
-import { usePathname, useRouter } from 'next/navigation'
+import { hasCookie } from 'cookies-next'
 import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 export const GuestPageWrapper = ({ children }: { children: React.ReactNode }) => {
-  // const router = useRouter()
-  // const { status } = useSession()
+  const router = useRouter()
 
-  // useEffect(() => {
-  //   if (status === "authenticated") {
-  //     router.push('/')
-  //   }
-  // }, [status])
+  useEffect(() => {
+    const token = hasCookie('next.auth.access_token')
+    if (token) {
+      router.push('/')
+    }
+  }, [])
 
-  return <>{children}</>
+  return <main>{children}</main>
 }

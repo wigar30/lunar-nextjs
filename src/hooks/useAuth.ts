@@ -1,6 +1,6 @@
 'use client'
 
-import { getCookie, hasCookie } from 'cookies-next'
+import { getCookie, hasCookie, deleteCookie } from 'cookies-next'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
@@ -20,7 +20,7 @@ export const useAuth = () => {
   }, [])
 
   const signOut = () => {
-    // window.localStorage.removeItem('next.auth.access_token')
+    deleteCookie('next.auth.access_token')
     router.push('/login')
   }
 

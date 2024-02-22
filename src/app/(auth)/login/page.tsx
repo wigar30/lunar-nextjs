@@ -3,7 +3,7 @@
 import clsx from 'clsx'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 import { Text } from '@/components/Base/Text'
 import { Input } from '@/components/Base/Input'
@@ -12,6 +12,8 @@ import { GuestPageWrapper } from '@/components/PageWrapper/GuestPageWrapper'
 
 import { LoginForms, LoginResponse } from '@/types/app/login'
 import { Response as ResponseType } from '@/types/app/ofetch/response'
+import { useApiAuth } from '@/hooks/api/auth/useApiAuth'
+import toast from 'react-hot-toast'
 
 const getData = async (forms: LoginForms): Promise<ResponseType<LoginResponse> | undefined> => {
   const login = await fetch('/api/auth/login', {
@@ -37,6 +39,8 @@ export default function Page() {
   })
 
   const router = useRouter()
+  const query = useSearchParams()
+  const auth = useApiAuth()
 
   useEffect(() => {
     setAnimate(true)
@@ -50,10 +54,16 @@ export default function Page() {
     e.preventDefault()
 
     try {
-      const login = await getData(forms)
-
-      router.push('/')
-    } catch (error) {}
+      await auth.login(forms)
+      const next = query.get('next')
+      if (next) {
+        router.push(next)
+      } else {
+        router.push('/')
+      }
+    } catch (error) {
+      toast.error(error as string)
+    }
   }
 
   const handleClickToRegister = () => {
