@@ -22,7 +22,6 @@ export const Store = () => {
   const { getTenants } = useApiTenant()
 
   useEffect(() => {
-    if (isLoaded) return
     getTenants(query).then((res) => {
       if (res) {
         setTenants(res)
@@ -37,7 +36,8 @@ export const Store = () => {
         setIsLoaded(true)
       }
     })
-  }, [isLoaded, tenants])
+  }, [])
+
   return (
     <section className="container mx-auto mt-6 grid grid-cols-3 gap-10">
       {isLoaded && tenants ? (

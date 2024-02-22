@@ -6,6 +6,7 @@ import { AnimatePresence } from 'framer-motion'
 import { Navbar } from '@/components/Navbar'
 
 import '../globals.css'
+import { SecurePageWrapper } from '@/components/PageWrapper/SecurePageWrapper'
 
 import type { Metadata } from 'next'
 import { Toaster } from 'react-hot-toast'
@@ -47,7 +48,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
         <Navbar />
-        <AnimatePresence mode="wait">{children}</AnimatePresence>
+        <AnimatePresence mode="wait">
+          <SecurePageWrapper>{children}</SecurePageWrapper>
+        </AnimatePresence>
       </body>
     </html>
   )

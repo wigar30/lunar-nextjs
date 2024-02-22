@@ -17,7 +17,6 @@ export const useApiAuth = () => {
       if (claims.exp) {
         const unix = Math.floor(Date.now() / 1000)
 
-
         setCookie('next.auth.access_token', login.data.access_token, {
           maxAge: claims.exp - unix
         })

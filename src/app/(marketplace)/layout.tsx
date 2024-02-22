@@ -9,6 +9,7 @@ import '../globals.css'
 
 import type { Metadata } from 'next'
 import { Toaster } from 'react-hot-toast'
+import { PublicPageWrapper } from '@/components/PageWrapper/PublicPageWrapper'
 
 const raleway = Raleway({ subsets: ['latin'] })
 
@@ -47,7 +48,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
         <Navbar />
-        <AnimatePresence mode="wait">{children}</AnimatePresence>
+        <AnimatePresence mode="wait">
+          <PublicPageWrapper>{children}</PublicPageWrapper>
+        </AnimatePresence>
       </body>
     </html>
   )
