@@ -1,6 +1,5 @@
 'use client'
 
-import { SecurePageWrapper } from '@/components/PageWrapper/SecurePageWrapper'
 import { Hero } from './component/Hero'
 import { Store } from './component/Store'
 

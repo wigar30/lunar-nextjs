@@ -58,23 +58,23 @@ export const Store = () => {
                   <div className="w-full space-y-1 mt-2">
                     <div className="w-full flex justify-between items-center">
                       <Text className="dark:text-primary-100 text-sm">Unprocessed Order</Text>
-                      <Text className="dark:text-primary-100 text-sm font-semibold">10</Text>
+                      <Text className="dark:text-primary-100 text-sm font-semibold">{item.summaryStat.unprocessed_order}</Text>
                     </div>
 
                     <div className="w-full flex justify-between items-center">
                       <Text className="dark:text-primary-100 text-sm">Order being delivered</Text>
-                      <Text className="dark:text-primary-100 text-sm font-semibold">23</Text>
+                      <Text className="dark:text-primary-100 text-sm font-semibold">{item.summaryStat.order_being_sent}</Text>
                     </div>
 
                     <div className="w-full flex justify-between items-center">
                       <Text className="dark:text-primary-100 text-sm">Unprocessed Complaint</Text>
-                      <Text className="dark:text-primary-100 text-sm font-semibold">12</Text>
+                      <Text className="dark:text-primary-100 text-sm font-semibold">{item.summaryStat.unfinished_complain}</Text>
                     </div>
                   </div>
                 </div>
 
                 <div className="w-full flex justify-center">
-                  <Button to={`${pathname}/1`} size="lg" className="rounded-full">
+                  <Button to={`${pathname}/${item.id}`} size="lg" className="rounded-full">
                     <Text className=" text-sm dark:text-primary-100">Manage {item.levelTenant.level}</Text>
                   </Button>
                 </div>

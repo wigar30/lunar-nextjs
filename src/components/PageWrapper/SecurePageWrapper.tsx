@@ -58,7 +58,7 @@ export const SecurePageWrapper = ({ children }: { children: React.ReactNode }) =
   return (
     <>
       {isToken && isLoaded && (
-        <motion.main key={pathname} className="w-full h-full min-h-screen" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }}>
+        <motion.main key={pathname} className="w-full" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }}>
           {children}
         </motion.main>
       )}
