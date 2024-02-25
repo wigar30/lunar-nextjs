@@ -10,10 +10,16 @@ export type ListTenantResponse = {
   items: Tenant[]
 } & PaginationResponse
 
+export type DetailTenantRequest = {
+  id: string
+}
+
+export type DetailTenantResponse = Tenant
+
 export type Tenant = {
   id: string
   name: string
-  totalProduct: number
+  total_product: number
   levelId: string
   levelTenant: LevelTenant
   products?: Product[]

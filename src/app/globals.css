@@ -27,3 +27,7 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
   @apply bg-primary-500;
 }
+
+.sidebar-menu.active {
+  @apply after:!w-full;
+}

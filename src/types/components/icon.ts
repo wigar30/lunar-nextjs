@@ -12,4 +12,6 @@ export type Icons = {
   person: string
   local_mall: string
   analytics: string
+  inventory_2: string
+  emergency_home: string
 }

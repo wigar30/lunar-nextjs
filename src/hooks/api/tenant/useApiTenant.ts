@@ -1,7 +1,7 @@
 import useSWR from 'swr'
 import { useFetch } from '../useFetch'
 import { Response } from '@/types/app/ofetch/response'
-import { ListTenantRequest, ListTenantResponse } from '@/types/app/tenant'
+import { DetailTenantRequest, DetailTenantResponse, ListTenantRequest, ListTenantResponse } from '@/types/app/tenant'
 import { FetchError } from 'ofetch'
 
 export const useApiTenant = () => {
@@ -20,7 +20,21 @@ export const useApiTenant = () => {
     }
   }
 
+  const getDetailTenant = async (payload: DetailTenantRequest): Promise<DetailTenantResponse | undefined> => {
+    try {
+      const getDetailTenant = await apiFetch<Response<DetailTenantResponse>>(`/v1/tenant/${payload.id}`, { method: 'GET' }, null, null)
+
+      return getDetailTenant.data
+    } catch (error) {
+      if (error instanceof FetchError) {
+        return Promise.reject(error.data?.message)
+      }
+      return Promise.reject(error)
+    }
+  }
+
   return {
-    getTenants
+    getTenants,
+    getDetailTenant
   }
 }
