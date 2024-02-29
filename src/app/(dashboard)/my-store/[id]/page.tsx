@@ -68,7 +68,7 @@ export default function Page({ params }: { params: Params }) {
               <Card>
                 <Card.Header>
                   <Text className="dark:text-primary-200 text-xl font-semibold">Total Product Archived</Text>
-                  <Icon icon="emergency_home" className="text-primary-200 text-2xl font-semibold"></Icon>
+                  <Icon icon="archive" className="text-primary-200 text-2xl font-semibold"></Icon>
                 </Card.Header>
 
                 <Text className="dark:text-primary-200 text-5xl font-semibold">{tenant?.summaryStat.order_being_sent}</Text>
@@ -90,7 +90,7 @@ export default function Page({ params }: { params: Params }) {
               <Card>
                 <Card.Header>
                   <Text className="dark:text-primary-200 text-xl font-semibold">Unprocessed Order</Text>
-                  <Icon icon="emergency_home" className="text-primary-200 text-2xl font-semibold"></Icon>
+                  <Icon icon="circle" className="text-primary-200 text-2xl font-semibold"></Icon>
                 </Card.Header>
 
                 <Text className="dark:text-primary-200 text-5xl font-semibold">{tenant?.summaryStat.unprocessed_order}</Text>
@@ -98,7 +98,7 @@ export default function Page({ params }: { params: Params }) {
               <Card>
                 <Card.Header>
                   <Text className="dark:text-primary-200 text-xl font-semibold">Order On the Way</Text>
-                  <Icon icon="emergency_home" className="text-primary-200 text-2xl font-semibold"></Icon>
+                  <Icon icon="local_shipping" className="text-primary-200 text-2xl font-semibold"></Icon>
                 </Card.Header>
 
                 <Text className="dark:text-primary-200 text-5xl font-semibold">{tenant?.summaryStat.order_being_sent}</Text>
@@ -106,7 +106,7 @@ export default function Page({ params }: { params: Params }) {
               <Card>
                 <Card.Header>
                   <Text className="dark:text-primary-200 text-xl font-semibold">Completed Order</Text>
-                  <Icon icon="emergency_home" className="text-primary-200 text-2xl font-semibold"></Icon>
+                  <Icon icon="check_circle" className="text-primary-200 text-2xl font-semibold"></Icon>
                 </Card.Header>
 
                 <Text className="dark:text-primary-200 text-5xl font-semibold">{tenant?.summaryStat.completed_order}</Text>
@@ -117,7 +117,7 @@ export default function Page({ params }: { params: Params }) {
               <Card>
                 <Card.Header>
                   <Text className="dark:text-primary-200 text-xl font-semibold">Total Complain</Text>
-                  <Icon icon="emergency_home" className="text-primary-200 text-2xl font-semibold"></Icon>
+                  <Icon icon="mark_chat_read" className="text-primary-200 text-2xl font-semibold"></Icon>
                 </Card.Header>
 
                 <Text className="dark:text-primary-200 text-5xl font-semibold">{tenant?.summaryStat.total_complain}</Text>
@@ -125,7 +125,7 @@ export default function Page({ params }: { params: Params }) {
               <Card>
                 <Card.Header>
                   <Text className="dark:text-primary-200 text-xl font-semibold">Total Unfinished Complain</Text>
-                  <Icon icon="emergency_home" className="text-primary-200 text-2xl font-semibold"></Icon>
+                  <Icon icon="feedback" className="text-primary-200 text-2xl font-semibold"></Icon>
                 </Card.Header>
 
                 <Text className="dark:text-primary-200 text-5xl font-semibold">{tenant?.summaryStat.unfinished_complain}</Text>

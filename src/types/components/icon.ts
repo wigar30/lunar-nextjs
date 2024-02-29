@@ -14,4 +14,10 @@ export type Icons = {
   analytics: string
   inventory_2: string
   emergency_home: string
+  archive: string
+  local_shipping: string
+  circle: string
+  check_circle: string
+  feedback: string
+  mark_chat_read: string
 }

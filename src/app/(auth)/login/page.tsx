@@ -128,9 +128,9 @@ export default function Page() {
                 </div>
               </label>
               <div className="w-full flex justify-end">
-                <Link href="/forgot-password">
                   <Text className="text-sm">Lupa Password</Text>
-                </Link>
+                {/* <Link href="/forgot-password">
+                </Link> */}
               </div>
               <Button type="submit" size="lg" block className="mt-4">
                 Login
