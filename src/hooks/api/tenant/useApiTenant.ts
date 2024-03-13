@@ -1,4 +1,3 @@
-import useSWR from 'swr'
 import { useFetch } from '../useFetch'
 import { Response } from '@/types/app/ofetch/response'
 import { DetailTenantRequest, DetailTenantResponse, ListTenantRequest, ListTenantResponse } from '@/types/app/tenant'

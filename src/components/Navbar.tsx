@@ -52,7 +52,7 @@ export const Navbar = () => {
             <img src="/images/lunar-logo.webp" alt="lunar-logo" width={200} height={200} sizes="100vw" className="w-auto h-20" />
           </Link>
 
-          { !inStore && <Input className="w-[800px] h-10" placeholder="Search Lunar" onInput={(e) => setSearch(e.target.value)} />}
+          {!inStore && <Input className="w-[800px] h-10" placeholder="Search Lunar" onInput={(e) => setSearch(e.target.value)} />}
         </div>
 
         <div className="flex items-center space-x-4">

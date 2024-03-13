@@ -20,4 +20,6 @@ export type Icons = {
   check_circle: string
   feedback: string
   mark_chat_read: string
+  arrow_back_ios: string
+  search: string
 }

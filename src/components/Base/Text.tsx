@@ -17,7 +17,7 @@ export const Text = (props: TextProps) => {
     black: 'font-black'
   }
   return (
-    <p className={twMerge(clsx(`text-primary-200 dark:text-primary-800 ${weightClass[weight]} ${className}`))} onClick={props.onClick}>
+    <p className={twMerge(clsx(`text-primary-200 dark:text-primary-800 ${weightClass[weight]}`, className))} onClick={props.onClick}>
       {props.children}
     </p>
   )

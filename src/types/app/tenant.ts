@@ -1,7 +1,6 @@
 import { LevelTenant } from './levelTenant'
 import { PaginationRequest } from './ofetch/request'
 import { PaginationResponse } from './ofetch/response'
-import { Product } from './product'
 import { SummaryStat } from './summaryStat'
 
 export type ListTenantRequest = PaginationRequest
@@ -22,6 +21,5 @@ export type Tenant = {
   total_product: number
   levelId: string
   levelTenant: LevelTenant
-  products?: Product[]
   summaryStat: SummaryStat
 }

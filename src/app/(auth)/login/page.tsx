@@ -128,7 +128,7 @@ export default function Page() {
                 </div>
               </label>
               <div className="w-full flex justify-end">
-                  <Text className="text-sm">Lupa Password</Text>
+                <Text className="text-sm">Lupa Password</Text>
                 {/* <Link href="/forgot-password">
                 </Link> */}
               </div>
