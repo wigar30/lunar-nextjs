@@ -7,4 +7,6 @@ export type ProductItem = {
   price: number
   description: string
   specification: string
+  status: boolean
+  actions: string
 }

@@ -1,5 +1,6 @@
 'use client'
 
+import { Badge } from '@/components/Base/Badge'
 import { Button } from '@/components/Base/Button'
 import { Card } from '@/components/Base/Card/Card'
 import { Icon } from '@/components/Base/Icon'
@@ -10,11 +11,12 @@ import { useApiProduct } from '@/hooks/api/product/useApiProduct'
 import { PaginationResponse } from '@/types/app/ofetch/response'
 import { ListProductRequest, ListProductResponse } from '@/types/app/product'
 import { TableHeader } from '@/types/components/Table/table'
-import { Products as ProductType } from '@/types/store/my-store/id/products'
+import { ProductLists } from '@/types/dashboard/my-store/product'
 import { ProductItem } from '@/types/store/my-store/product'
+import { usePathname } from 'next/navigation'
 import { ChangeEvent, useEffect, useState } from 'react'
 
-export const Products = (props: ProductType) => {
+export const Products = (props: ProductLists) => {
   const [product, setProduct] = useState<ListProductResponse>()
   const [search, setSearch] = useState('')
 
@@ -27,12 +29,15 @@ export const Products = (props: ProductType) => {
 
   const productHeaders: TableHeader<ProductItem>[] = [
     { key: 'id', label: 'ID' },
-    { key: 'name', label: 'Product Name' },
+    { key: 'name', label: 'Product Name', className: 'w-6/12' },
     { key: 'totalStock', label: 'Stock' },
     { key: 'totalSold', label: 'Total Sold' },
-    { key: 'price', label: 'Price' }
+    { key: 'price', label: 'Price' },
+    { key: 'status', label: 'Status Publish', className: 'w-2/12 text-center' },
+    { key: 'actions', label: '', className: 'w-1/12 text-center' }
   ]
 
+  const pathname = usePathname()
   const { getProducts } = useApiProduct()
 
   const handleGetProduct = () => {
@@ -94,7 +99,7 @@ export const Products = (props: ProductType) => {
 
       <Card className="mt-4">
         <div className="w-full flex justify-between">
-          <Button className="bg-primary-100" to={`/my-store/${props.params.id}/createnvm`}>
+          <Button className="bg-primary-100" to={`/my-store/${props.params.id}/create`}>
             <Text className="dark:text-primary-500 text-sm font-semibold">Add Product</Text>
           </Button>
 
@@ -106,7 +111,25 @@ export const Products = (props: ProductType) => {
       </Card>
 
       <Card className="mt-4">
-        <Table<ProductItem> items={product?.items} headers={productHeaders} loading={productLoading} slots={{ price: <p>sd</p> }} />
+        <Table<ProductItem>
+          items={product?.items}
+          headers={productHeaders}
+          loading={productLoading}
+          slots={{
+            status: (data) => (
+              <div className="w-full flex justify-center">
+                <Badge type={data.status ? 'success' : 'warning'}>{data.status ? 'Published' : 'Archived'}</Badge>
+              </div>
+            ),
+            actions: (data) => (
+              <div className="w-full flex justify-center">
+                <Button to={`${pathname}/product/${data.id}`} className="border border-primary-200 flex items-center">
+                  <Icon icon="edit" className="text-primary-200 cursor-pointer"></Icon>
+                </Button>
+              </div>
+            )
+          }}
+        />
       </Card>
     </>
   )

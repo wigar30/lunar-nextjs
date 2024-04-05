@@ -11,4 +11,9 @@ export type ListProductResponse = {
   items: ProductItem[]
 } & PaginationResponse
 
+export type DetailProductRequest = {
+  tenantId: string
+  productId: string
+}
+
 export type DetailProductResponse = ProductItem

@@ -7,7 +7,7 @@ type FetchOptions = {
 }
 
 export const useFetch = () => {
-  const apiFetch = <T>(url: string, options: FetchOptions, payload: Record<string, any> | null = null, query: any) => {
+  const apiFetch = <T>(url: string, options: FetchOptions, payload: Record<string, any> | null = null, query: any = null) => {
     const token = getCookie('next.auth.access_token')
 
     return ofetch<T>(url, {

@@ -32,7 +32,7 @@ export const Table = <T extends any>(props: TableProps<T>) => {
                 {props.headers.map((head, indexKey) => (
                   <td key={indexKey} className={twMerge(clsx('py-2 px-2 first:rounded-l-md last:rounded-r-md', head.className))}>
                     {props.slots && props.slots[head.key as keyof T] ? (
-                      <>{props.slots[head.key]}</>
+                      <>{props.slots[head.key]?.(item)}</>
                     ) : (
                       <Text weight="medium" className="dark:text-primary-50">
                         {getPropertyValue(item, head.key as string)}

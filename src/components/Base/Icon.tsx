@@ -4,6 +4,7 @@ import { IconProps } from '@/types/components/icon'
 import { Text } from './Text'
 
 export const Icon = (props: IconProps) => {
+  const { filled = false } = props
   return (
     <>
       {props.tooltip ? (
@@ -14,7 +15,7 @@ export const Icon = (props: IconProps) => {
           </div>
         </div>
       ) : (
-        <span className={twMerge(clsx('material-symbols-rounded cursor-default select-none', props.className))}>{props.icon}</span>
+        <span className={twMerge(clsx(filled ? 'material-symbols-rounded-fill' : 'material-symbols-rounded', 'cursor-default select-none', props.className))}>{props.icon}</span>
       )}
     </>
   )

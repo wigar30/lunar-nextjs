@@ -1,5 +1,6 @@
 export type IconProps = {
   icon: keyof Icons
+  filled?: boolean
   className?: string
   tooltip?: string
 }
@@ -22,4 +23,7 @@ export type Icons = {
   mark_chat_read: string
   arrow_back_ios: string
   search: string
+  edit: string
+  star: string
+  star_half: string
 }

@@ -5,7 +5,7 @@ export type TableProps<T> = {
   items: T[] | undefined
   headers: TableHeader<T>[]
   slots?: {
-    [key in keyof T]?: React.ReactNode
+    [key in keyof T]?: (data: T) => React.ReactNode
   }
 }
 
