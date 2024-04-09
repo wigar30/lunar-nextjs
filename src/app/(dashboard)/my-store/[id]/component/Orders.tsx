@@ -4,7 +4,7 @@ import { Card } from '@/components/Base/Card/Card'
 import { Icon } from '@/components/Base/Icon'
 import { Input } from '@/components/Base/Input'
 import { Text } from '@/components/Base/Text'
-import { OrderLists } from '@/types/dashboard/my-store/order'
+import { OrderLists } from '@/types/app/dashboard/my-store/order'
 import { ChangeEvent, useState } from 'react'
 
 export const Orders = (props: OrderLists) => {

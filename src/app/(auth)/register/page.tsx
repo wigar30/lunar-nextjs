@@ -8,7 +8,7 @@ import { Text } from '@/components/Base/Text'
 import { Input } from '@/components/Base/Input'
 import { Button } from '@/components/Base/Button'
 
-import { RegisterForms } from '@/types/app/register'
+import { RegisterForms } from '@/types/app/auth/register'
 
 export default function Page() {
   const [animate, setAnimate] = useState(false)

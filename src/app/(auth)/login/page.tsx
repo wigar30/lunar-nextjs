@@ -10,8 +10,8 @@ import { Input } from '@/components/Base/Input'
 import { Button } from '@/components/Base/Button'
 import { GuestPageWrapper } from '@/components/PageWrapper/GuestPageWrapper'
 
-import { LoginForms, LoginResponse } from '@/types/app/login'
-import { Response as ResponseType } from '@/types/app/ofetch/response'
+import { LoginForms, LoginResponse } from '@/types/app/auth/login'
+import { Response as ResponseType } from '@/types/utils/ofetch/response'
 import { useApiAuth } from '@/hooks/api/auth/useApiAuth'
 import toast from 'react-hot-toast'
 

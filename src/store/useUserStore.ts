@@ -1,4 +1,4 @@
-import { UserStore } from '@/types/store/user'
+import { UserStore } from '@/types/utils/store/user'
 import { create } from 'zustand'
 
 export const useUserStore = create<UserStore>()((set) => ({

@@ -3,7 +3,7 @@ import { Card } from '@/components/Base/Card/Card'
 import { Rating } from '@/components/Base/Rating'
 import { Text } from '@/components/Base/Text'
 import { useCurrency } from '@/hooks/utils/currency'
-import { ProductDetail } from '@/types/dashboard/my-store/product'
+import { ProductDetail } from '@/types/app/dashboard/my-store/products'
 
 export const Product = (props: ProductDetail) => {
   const { content } = props
@@ -25,7 +25,7 @@ export const Product = (props: ProductDetail) => {
 
       <div className="w-full grid grid-cols-12 gap-4">
         <div className="col-span-7">
-          <Rating rating={3}></Rating>
+          <Rating rating={3.7}></Rating>
           <Text className="text-sm dark:text-primary-100">
             Sold <span className="font-bold">{content.totalSold}</span>
           </Text>
@@ -42,7 +42,10 @@ export const Product = (props: ProductDetail) => {
           </span>
         </div>
         <div className="col-span-5">
-          <div className="mt-4 p-2 border-2 border-dashed border-primary-100 rounded-lg">image</div>
+          {}
+          <div className="mt-4 p-2 border-2 border-dashed border-primary-100 bg-primary-400 rounded-lg">
+            <Text>Image for this product not provided</Text>
+          </div>
         </div>
       </div>
 

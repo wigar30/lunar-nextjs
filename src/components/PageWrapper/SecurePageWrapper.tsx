@@ -9,8 +9,8 @@ import { useAuth } from '@/hooks/useAuth'
 
 import { useUserStore } from '@/store/useUserStore'
 
-import { User } from '@/types/store/user'
-import { Response as ResponseType } from '@/types/app/ofetch/response'
+import { User } from '@/types/utils/store/user'
+import { Response as ResponseType } from '@/types/utils/ofetch/response'
 import { ofetch } from 'ofetch'
 
 const getUser = async (token: string): Promise<ResponseType<User>> => {

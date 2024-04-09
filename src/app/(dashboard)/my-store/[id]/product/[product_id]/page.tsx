@@ -2,10 +2,10 @@
 
 import { Backnav } from '@/components/Backnav'
 import { useApiProduct } from '@/hooks/api/product/useApiProduct'
-import { DetailProductResponse } from '@/types/app/product'
-import { Params } from '@/types/app/router'
+import { Params } from '@/types/utils/router'
 import { useEffect, useState } from 'react'
 import { Product } from './component/ProductDetail'
+import { DetailProductResponse } from '@/types/api/product'
 
 export default function Page({ params }: { params: Params }) {
   const [product, setProduct] = useState<DetailProductResponse>()

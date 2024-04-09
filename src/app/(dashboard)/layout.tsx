@@ -9,7 +9,9 @@ import '../globals.css'
 import { SecurePageWrapper } from '@/components/PageWrapper/SecurePageWrapper'
 
 import { Toaster } from 'react-hot-toast'
+import { register } from 'swiper/element/bundle'
 
+register()
 const raleway = Raleway({ subsets: ['latin'] })
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

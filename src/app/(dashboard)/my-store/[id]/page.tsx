@@ -1,14 +1,14 @@
 'use client'
 
-import { Params } from '@/types/app/router'
+import { Params } from '@/types/utils/router'
 import { Text } from '@/components/Base/Text'
 import { Sidebar } from '@/components/Base/Sidebar/Sidebar'
-import { DetailTenantResponse } from '@/types/app/tenant'
 import { useEffect, useState } from 'react'
 import { useApiTenant } from '@/hooks/api/tenant/useApiTenant'
 import { Backnav } from '@/components/Backnav'
 import { Products } from './component/Products'
 import { Orders } from './component/Orders'
+import { DetailTenantResponse } from '@/types/api/tenant'
 
 export default function Page({ params }: { params: Params }) {
   const [activeTab, setActiveTab] = useState('product')

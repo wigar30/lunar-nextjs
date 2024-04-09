@@ -6,8 +6,8 @@ import { useEffect, useState } from 'react'
 import { getCookie, hasCookie, deleteCookie } from 'cookies-next'
 import { useUserStore } from '@/store/useUserStore'
 
-import { User } from '@/types/store/user'
-import { Response as ResponseType } from '@/types/app/ofetch/response'
+import { User } from '@/types/utils/store/user'
+import { Response as ResponseType } from '@/types/utils/ofetch/response'
 import { useFetch } from '@/hooks/api/useFetch'
 import { ofetch } from 'ofetch'
 

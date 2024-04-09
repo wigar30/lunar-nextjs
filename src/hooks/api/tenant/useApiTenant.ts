@@ -1,5 +1,5 @@
 import { useFetch } from '../useFetch'
-import { Response } from '@/types/app/ofetch/response'
+import { Response } from '@/types/utils/ofetch/response'
 import { DetailTenantRequest, DetailTenantResponse, ListTenantRequest, ListTenantResponse } from '@/types/app/tenant'
 import { FetchError } from 'ofetch'
 

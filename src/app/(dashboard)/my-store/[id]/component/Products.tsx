@@ -8,13 +8,12 @@ import { Input } from '@/components/Base/Input'
 import { Table } from '@/components/Base/Table/Table'
 import { Text } from '@/components/Base/Text'
 import { useApiProduct } from '@/hooks/api/product/useApiProduct'
-import { PaginationResponse } from '@/types/app/ofetch/response'
-import { ListProductRequest, ListProductResponse } from '@/types/app/product'
+import { PaginationResponse } from '@/types/utils/ofetch/response'
 import { TableHeader } from '@/types/components/Table/table'
-import { ProductLists } from '@/types/dashboard/my-store/product'
-import { ProductItem } from '@/types/store/my-store/product'
+import { ProductLists } from '@/types/app/dashboard/my-store/products'
 import { usePathname } from 'next/navigation'
 import { ChangeEvent, useEffect, useState } from 'react'
+import { ListProductRequest, ListProductResponse, Product } from '@/types/api/product'
 
 export const Products = (props: ProductLists) => {
   const [product, setProduct] = useState<ListProductResponse>()
@@ -27,7 +26,7 @@ export const Products = (props: ProductLists) => {
     limit: '10'
   })
 
-  const productHeaders: TableHeader<ProductItem>[] = [
+  const productHeaders: TableHeader<Product>[] = [
     { key: 'id', label: 'ID' },
     { key: 'name', label: 'Product Name', className: 'w-6/12' },
     { key: 'totalStock', label: 'Stock' },
@@ -111,7 +110,7 @@ export const Products = (props: ProductLists) => {
       </Card>
 
       <Card className="mt-4">
-        <Table<ProductItem>
+        <Table<Product>
           items={product?.items}
           headers={productHeaders}
           loading={productLoading}

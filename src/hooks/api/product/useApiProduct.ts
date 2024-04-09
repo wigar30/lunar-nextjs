@@ -1,6 +1,6 @@
 import { DetailProductRequest, DetailProductResponse, ListProductPath, ListProductRequest, ListProductResponse } from '@/types/app/product'
 import { useFetch } from '../useFetch'
-import { Response } from '@/types/app/ofetch/response'
+import { Response } from '@/types/utils/ofetch/response'
 import { FetchError } from 'ofetch'
 
 export const useApiProduct = () => {
